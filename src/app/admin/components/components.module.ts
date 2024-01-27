@@ -16,8 +16,8 @@ import { BasketsModule } from '../../ui/components/baskets/baskets.module';
     ProductsModule,
     OrderModule,
     CustomerModule,
-    HomeModule,
-    BasketsModule,
+    // HomeModule,
+    // BasketsModule,
     DashboardModule
   ]
 })

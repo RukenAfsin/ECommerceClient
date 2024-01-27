@@ -3,16 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BasketsComponent } from './baskets.component';
 
-
-
 @NgModule({
-  declarations: [
-    BasketsComponent
-  ],
+  declarations: [BasketsComponent],
+  exports: [BasketsComponent], // Eklenen kısım
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path:"", component:BasketsComponent}
+      { path: "", component: BasketsComponent }
     ])
   ]
 })

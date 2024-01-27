@@ -1,9 +1,22 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminModule } from './admin/admin.module';
+import { UiModule } from './ui/ui.module';
+import { routes } from './app.routes';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration()]
+  providers: [
+    provideRouter(routes),
+    importProvidersFrom(
+      BrowserModule,
+      BrowserAnimationsModule,
+      AdminModule,
+      UiModule
+    ),
+    provideClientHydration()
+  ]
 };

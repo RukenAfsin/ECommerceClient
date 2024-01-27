@@ -15,12 +15,10 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
   ],
   exports:[
     HeaderComponent,
-    SidebarComponent,
-    FooterComponent
+    SidebarComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
@@ -8,5 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './customer.component.scss'
 })
 export class CustomerComponent {
+
+  constructor(  ){}
+  
+ngOnInit(): void {
+
+}  
+
 
 }
