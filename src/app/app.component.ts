@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
 
 
 @Component({
@@ -12,4 +14,24 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'ECommerceClient';
+
+  constructor(private toastrService:CustomToastrService)
+  {
+    toastrService.message("hello", "ruken",{
+      messageType:ToastrMessageType.Info,
+      position:ToastrPosition.TopCenter
+    });
+    toastrService.message("hello", "ruken",{
+      messageType:ToastrMessageType.Error,
+      position:ToastrPosition.TopCenter
+    });
+    toastrService.message("hello", "ruken",{
+      messageType:ToastrMessageType.Success,
+      position:ToastrPosition.TopCenter
+    });
+    toastrService.message("hello", "ruken",{
+      messageType:ToastrMessageType.Warning,
+      position:ToastrPosition.TopCenter
+    });
+  }
 }
