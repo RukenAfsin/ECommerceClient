@@ -11,6 +11,7 @@ import { ProductsAdminComponent } from '../components/products-admin/products-ad
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 
+
 @Component({
   selector: 'app-layout',
   standalone: true,
@@ -22,5 +23,6 @@ import {MatListModule} from '@angular/material/list';
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
+ 
  
 }
