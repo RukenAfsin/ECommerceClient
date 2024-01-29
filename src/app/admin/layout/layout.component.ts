@@ -8,7 +8,8 @@ import { CustomerComponent } from '../components/customer/customer.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { OrderComponent } from '../components/order/order.component';
 import { ProductsAdminComponent } from '../components/products-admin/products-admin.component';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +17,7 @@ import { ProductsAdminComponent } from '../components/products-admin/products-ad
   imports: [ CommonModule,
     HeaderComponent,SidebarComponent,FooterComponent,
     RouterModule,
-    CustomerComponent,DashboardComponent,OrderComponent,ProductsAdminComponent],
+    CustomerComponent,DashboardComponent,OrderComponent,ProductsAdminComponent,MatSidenavModule,MatListModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
