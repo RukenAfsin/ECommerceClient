@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({

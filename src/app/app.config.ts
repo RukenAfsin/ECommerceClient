@@ -4,15 +4,19 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 import { routes } from './app.routes';
 import { provideRouter } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
-
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: 'baseUrl', useValue: 'https://localhost:7176/api', multi: true },
     provideRouter(routes),
-    importProvidersFrom(BrowserModule, BrowserAnimationsModule,ToastrModule.forRoot()),
+    importProvidersFrom(
+      BrowserModule,
+      BrowserAnimationsModule,
+      ToastrModule.forRoot(),
+      HttpClientModule  // HttpClientModule'ı burada ekleyin
+    ),
     provideClientHydration(),
-    provideAnimations()
-]
+    provideAnimations(),
+  ],
 };
-
