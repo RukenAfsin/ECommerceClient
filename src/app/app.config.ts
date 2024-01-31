@@ -15,6 +15,7 @@ export const appConfig: ApplicationConfig = {
       BrowserAnimationsModule,
       ToastrModule.forRoot(),
       HttpClientModule  // HttpClientModule'ı burada ekleyin
+      
     ),
     provideClientHydration(),
     provideAnimations(),
