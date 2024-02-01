@@ -12,18 +12,21 @@ import { ProductsAdminComponent } from './admin/components/products-admin/produc
 
 
 export const routes: Routes = [
-   
-      
-      {path:"admin", component: LayoutComponent}, 
-      {path:"admin/dashboard", component: DashboardComponent}, 
-      {path:"admin/customers", component:CustomerComponent},
-      {path:"admin/products", component:ProductsAdminComponent},
-      {path:"admin/orders", component:OrderComponent},
-
-   
-      
-      { path:"", component: HomeComponent},
-      {path:"home", component: HomeComponent },
-      { path:"basket", component:BasketsComponent},
-      { path:"products",component:ProductsComponent},
-];
+      {
+        path: 'admin',
+        component: LayoutComponent,
+        children: [
+          { path: 'dashboard', component: DashboardComponent },
+          { path: 'customers', component: CustomerComponent },
+          { path: 'products', component: ProductsAdminComponent },
+          { path: 'orders', component: OrderComponent },
+          { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+        ],
+      },
+      // Add a comma here
+      { path: "", component: HomeComponent },
+      { path: "home", component: HomeComponent },
+      { path: "basket", component: BasketsComponent },
+      { path: "products", component: ProductsComponent },
+    ];
+    

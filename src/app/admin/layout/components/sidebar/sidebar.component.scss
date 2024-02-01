@@ -1,13 +1,5 @@
-mat-list {
-    mat-list-item {
-      a {
-        color: #af894c; // Yeşil renk örneği, ihtiyacınıza uygun renk değerini kullanabilirsiniz
-        text-decoration: none;
-  
-        &:hover {
-          color: #45a049; // Hover durumunda farklı bir yeşil renk
-        }
-      }
-    }
-  }
-  
+// ComponentName.component.scss
+
+.mat-list-item a {
+  color: red; // veya istediğiniz bir renk
+}

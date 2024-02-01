@@ -17,21 +17,21 @@ export class AppComponent {
 
   constructor(private toastrService:CustomToastrService)
   {
-    toastrService.message("hello", "ruken",{
-      messageType:ToastrMessageType.Info,
-      position:ToastrPosition.TopCenter
-    });
-    toastrService.message("hello", "ruken",{
-      messageType:ToastrMessageType.Error,
-      position:ToastrPosition.TopCenter
-    });
-    toastrService.message("hello", "ruken",{
-      messageType:ToastrMessageType.Success,
-      position:ToastrPosition.TopCenter
-    });
-    toastrService.message("hello", "ruken",{
-      messageType:ToastrMessageType.Warning,
-      position:ToastrPosition.TopCenter
-    });
+    // toastrService.message("hello", "ruken",{
+    //   messageType:ToastrMessageType.Info,
+    //   position:ToastrPosition.TopCenter
+    // });
+    // toastrService.message("hello", "ruken",{
+    //   messageType:ToastrMessageType.Error,
+    //   position:ToastrPosition.TopCenter
+    // });
+    // toastrService.message("hello", "ruken",{
+    //   messageType:ToastrMessageType.Success,
+    //   position:ToastrPosition.TopCenter
+    // });
+    // toastrService.message("hello", "ruken",{
+    //   messageType:ToastrMessageType.Warning,
+    //   position:ToastrPosition.TopCenter
+    // });
   }
 }
