@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { ProductsAdminComponent } from '../products-admin.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,11 +8,12 @@ import { Create_Product } from '../../../../contracts/create_product';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';
 
 
+
 @Component({
   selector: 'app-create',
   standalone: true,
   imports: [
-    ProductsAdminComponent,
+    // ProductsAdminComponent,
     MatFormFieldModule,MatInputModule,MatButtonModule,
   ],
   templateUrl: './create.component.html',
@@ -21,6 +22,9 @@ import { AlertifyService, MessageType, Position } from '../../../../services/adm
 export class CreateComponent {
    constructor(private productService:ProductService,private alertify:AlertifyService)
    {}
+
+  //  @Output() createdProduct :EventEmitter<Create_Product>=new EventEmitter();
+
    create (name: HTMLInputElement,stock: HTMLInputElement,price: HTMLInputElement)
    {
     const create_product: Create_Product= new Create_Product();
@@ -28,12 +32,20 @@ export class CreateComponent {
     create_product.stock=parseInt(stock.value);
     create_product.price=parseFloat(price.value);
 
+
     this.productService.create(create_product, ()=>{
-      this.alertify.message("Products Added", {
+      this.alertify.message("Products Added Successfully", {
         dismissOthers:true,
         messageType:MessageType.Success,
         position:Position.TopRight
       })
+    },errorMessage =>{
+    this.alertify.message(errorMessage,{
+      dismissOthers:true,
+      messageType:MessageType.Error,
+      position:Position.TopRight
+    })
+  // this.createdProduct.emit(create_product);
     });
 
 
