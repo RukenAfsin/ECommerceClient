@@ -3,7 +3,7 @@ import { HttpClientService } from '../http-client.service';
 import { Create_Product } from '../../../contracts/create_product';
 import { HttpErrorResponse } from '@angular/common/http';
 import { List_Product } from '../../../contracts/list_product';
-import { error } from 'console';
+import { Observable, firstValueFrom } from 'rxjs';
 
 
 
@@ -58,6 +58,12 @@ export class ProductService {
     }
   }
   
+  async delete(id:string){
+   const deleteObservable:Observable<any>= this.httpClientService.delete<any>({
+      controller:"products"
+    },id)
+   await  firstValueFrom(deleteObservable)
+  }
 
   // async read(page:number=0,size:number=5, successCallBack?: () => void,errorCallBack?:(errorMessage:
   //   string)=>void ):Promise<{totalCount:number;

@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { Create_Product } from '../../../contracts/create_product';
+import { DeleteDirective } from '../../../directives/admin/delete.directive';
 
 
 @Component({

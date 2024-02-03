@@ -4,11 +4,14 @@ import { List_Product } from '../../../../contracts/list_product';
 import { ProductService } from '../../../../services/common/models/product.service';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';7
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { DeleteDirective } from '../../../../directives/admin/delete.directive';
+
+declare var $:any;
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [MatTableModule,MatPaginatorModule],
+  imports: [MatTableModule,MatPaginatorModule,DeleteDirective],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -20,7 +23,7 @@ async ngAfterViewInit() {
   this.dataSource.paginator = this.paginator;
 }
 
-displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate','updatedDate'];
+displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate','updatedDate','edit','delete'];
 dataSource :MatTableDataSource<List_Product>= null;
 @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -39,6 +42,11 @@ async getProducts(){
    this.paginator.length=allProducts.totalCount
 }
 
+// delete(id, event){
+//   alert(id)
+//   const img :HTMLImageElement=event.srcElement;
+//   $(img.parentElement.parentElement).fadeOut(2000);
+// }
 
 async pageChanged(){
   await this.getProducts();
