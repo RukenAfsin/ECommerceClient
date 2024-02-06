@@ -9,17 +9,16 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { Create_Product } from '../../../contracts/create_product';
-import { DeleteDirective } from '../../../directives/admin/delete.directive';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../../../dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-products-admin',
   
   standalone: true,
   imports: [CommonModule,HttpClientModule,
-    MatSidenavModule,MatFormFieldModule,MatInputModule,MatTableModule,MatPaginatorModule,
-    CreateComponent,ListComponent],
+    MatSidenavModule,MatFormFieldModule,MatInputModule,MatTableModule,MatPaginatorModule,MatDialogModule,
+    CreateComponent,ListComponent,DeleteDialogComponent],
   templateUrl: './products-admin.component.html',
   styleUrl: './products-admin.component.scss'
 })
