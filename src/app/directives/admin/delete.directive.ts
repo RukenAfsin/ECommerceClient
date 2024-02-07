@@ -64,6 +64,9 @@ export class DeleteDirective {
         })  
       })   
      }
+
+
+
      openDialog(afterClosed:any): void {
       const dialogRef = this.dialog.open(DeleteDialogComponent, {
         width:'250px',
@@ -72,9 +75,8 @@ export class DeleteDirective {
   
       dialogRef.afterClosed().subscribe(result => {
        if(result==DeleteState.Yes)
-       {
-        afterClosed()
-       }
+       afterClosed()
+       
       });
     }
 
