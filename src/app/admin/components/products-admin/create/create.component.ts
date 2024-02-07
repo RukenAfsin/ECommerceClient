@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProductsAdminComponent } from '../products-admin.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ProductService } from '../../../../services/common/models/product.service';
 import { Create_Product } from '../../../../contracts/create_product';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';
+import { FileUploadComponent, FileUploadOptions } from '../../../../services/common/file-upload/file-upload.component';
 
 
 
@@ -14,7 +15,7 @@ import { AlertifyService, MessageType, Position } from '../../../../services/adm
   standalone: true,
   imports: [
     // ProductsAdminComponent,
-    MatFormFieldModule,MatInputModule,MatButtonModule,
+    MatFormFieldModule,MatInputModule,MatButtonModule,FileUploadComponent
   ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
@@ -24,6 +25,13 @@ export class CreateComponent {
    {}
 
   //  @Output() createdProduct :EventEmitter<Create_Product>=new EventEmitter();
+   @Output() fileUploadOptions:Partial<FileUploadOptions>={
+    action:"upload",
+    controller:"products",
+    explanation:"Drag pictures or select...",
+    isAdminPage:true,
+    accept:".png, .jpg, .jpeg, .json"
+   }
 
    create (name: HTMLInputElement,stock: HTMLInputElement,price: HTMLInputElement)
    {
