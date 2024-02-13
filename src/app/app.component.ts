@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './ui/components/register/register.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,RegisterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

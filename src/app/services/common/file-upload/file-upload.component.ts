@@ -8,6 +8,7 @@ import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui
 import { MatDialog } from '@angular/material/dialog';
 import { FileUploadDialogComponent, FileUploadDialogState } from '../../../dialogs/file-upload-dialog/file-upload-dialog.component';
 import { DialogService } from '../dialog.service';
+import { BaseDialog } from '../../../dialogs/base/base-dialog';
 
 @Component({
   selector: 'app-file-upload',
@@ -23,7 +24,7 @@ constructor(private httpClientServive:HttpClientService,
  private alertifyService:AlertifyService,
  private  customToastrService:CustomToastrService,
  private dialog:MatDialog,
- private dialogService:DialogService){}
+ private dialogService:DialogService<MatDialog>){}
 
   public files: NgxFileDropEntry[]; 
 

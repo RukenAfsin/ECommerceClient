@@ -20,7 +20,7 @@ export class DeleteDirective {
    private httpClientService:HttpClientService,
    public dialog: MatDialog,
    private alertifyService: AlertifyService,
-   private dialogService:DialogService) {
+   private dialogService:DialogService<DeleteDialogComponent>) {
 
 
       const img=_renderer.createElement("img")
