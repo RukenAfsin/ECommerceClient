@@ -2,6 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { User } from '../../../entities/user';
+import { UserService } from '../../../services/common/models/user.service';
+import { Create_User } from '../../../contracts/users/create_user';
+import { ToastrService } from 'ngx-toastr';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../../services/ui/custom-toastr.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +16,8 @@ import { User } from '../../../entities/user';
 })
 export class RegisterComponent {
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private userService:UserService,
+   private  toastrService:CustomToastrService ) {
 
     this.frm = this.formBuilder.group({
       namesurname: ["", [Validators.required, Validators.maxLength(50),
@@ -42,18 +47,24 @@ export class RegisterComponent {
     return this.frm.controls;
   }
 
-  submitted: boolean = false;
-  onSubmit(data: User) {
+ submitted: boolean = false;
+ async onSubmit(user: User) {
     this.submitted = true;
-    // var c = this.component;
-    // var f= this.frm;
-    // var d= this.frm.hasError("notSame")
-
+ 
 
     if (this.frm.invalid)
       return;
+
+      const result: Create_User = await this.userService.create(user);
+      if (result.succeeded)
+        this.toastrService.message(result.message, "Register Success", {
+          messageType: ToastrMessageType.Success,
+          position: ToastrPosition.TopRight
+        })
+      else
+        this.toastrService.message(result.message, "Regiter Error", {
+          messageType: ToastrMessageType.Error,
+          position: ToastrPosition.TopRight
+        })
+    }
   }
-
-
-
-}
