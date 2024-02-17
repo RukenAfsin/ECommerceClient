@@ -6,6 +6,8 @@ import { Create_User } from '../../../contracts/users/create_user';
 import { User } from '../../../entities/user';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui/custom-toastr.service';
 import { HttpClientService } from '../http-client.service';
+import { Token } from '../../../contracts/token/token';
+import { TokenResponse } from '../../../contracts/token/tokenResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +29,23 @@ export class UserService {
     }
   }
 
- async login(UserNameOrEmail :string, Password:string):Promise<void>{
-    const observable:Observable<any>=this.httpClientService.post({
+ async login(UserNameOrEmail :string, Password:string):Promise<any>{
+    const observable:Observable<any | TokenResponse>=this.httpClientService.post<any|TokenResponse>({
     controller:"users",
     action:"login"
   },{UserNameOrEmail,Password})
 
-  await firstValueFrom(observable)
-  }
+ const tokenResponse:TokenResponse =await firstValueFrom(observable) as TokenResponse;
+ if(tokenResponse)
+ localStorage.setItem("accessToken", tokenResponse.token.accessToken)
+ {  
+  this.toastrService.message("User login successfull","login success",
+      {
+         messageType:ToastrMessageType.Success,
+         position:ToastrPosition.TopRight
+      }) 
+
+  } 
+ }
 }
 
