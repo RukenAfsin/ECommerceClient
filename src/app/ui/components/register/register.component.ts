@@ -4,7 +4,6 @@ import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModu
 import { User } from '../../../entities/user';
 import { UserService } from '../../../services/common/models/user.service';
 import { Create_User } from '../../../contracts/users/create_user';
-import { ToastrService } from 'ngx-toastr';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../../services/ui/custom-toastr.service';
 
 @Component({

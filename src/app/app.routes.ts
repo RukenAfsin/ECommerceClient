@@ -9,6 +9,7 @@ import { BasketsComponent } from './ui/components/baskets/baskets.component';
 import { ProductsComponent } from './ui/components/products/products.component';
 import { ProductsAdminComponent } from './admin/components/products-admin/products-admin.component';
 import { RegisterComponent } from './ui/components/register/register.component';
+import { LoginComponent } from './ui/components/login/login.component';
 
 
 
@@ -29,6 +30,7 @@ export const routes: Routes = [
       { path: "home", component: HomeComponent },
       { path: "basket", component: BasketsComponent },
       { path: "products", component: ProductsComponent },
-      { path: "register", component: RegisterComponent}
+      { path: "register", component: RegisterComponent},
+      { path: "login", component: LoginComponent}
     ];
     
