@@ -10,6 +10,7 @@ import { ProductsComponent } from './ui/components/products/products.component';
 import { ProductsAdminComponent } from './admin/components/products-admin/products-admin.component';
 import { RegisterComponent } from './ui/components/register/register.component';
 import { LoginComponent } from './ui/components/login/login.component';
+import { AuthGuard } from './guards/common/auth.guard';
 
 
 
@@ -18,12 +19,12 @@ export const routes: Routes = [
         path: 'admin',
         component: LayoutComponent,
         children: [
-          { path: 'dashboard', component: DashboardComponent },
-          { path: 'customers', component: CustomerComponent },
-          { path: 'products', component: ProductsAdminComponent },
-          { path: 'orders', component: OrderComponent },
+          { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
+          { path: 'customers', component: CustomerComponent, canActivate:[AuthGuard] },
+          { path: 'products', component: ProductsAdminComponent, canActivate:[AuthGuard] },
+          { path: 'orders', component: OrderComponent , canActivate:[AuthGuard]},
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-        ],
+        ], canActivate:[AuthGuard]
       },
       // Add a comma here
       { path: "", component: HomeComponent },
