@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../services/ui/custom-toastr.service';
+import { _isAuthenticated } from '../../services/common/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +14,7 @@ export class AuthGuard implements CanActivate {
     private toastrService: CustomToastrService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const token: string = localStorage.getItem("accessToken");
-
-    let expired: boolean;
-
-    try {
-      expired = this.jwtHelper.isTokenExpired(token);
-    }
-    catch {
-      expired = true;
-    }
-    if (!token || expired) {
+    if (!_isAuthenticated) {
       this.router.navigate(["login"], { queryParams: { returnUrl: state.url } });
       this.toastrService.message("You should login", "Unauthorized access", {
         messageType: ToastrMessageType.Warning,

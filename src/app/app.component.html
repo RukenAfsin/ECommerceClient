@@ -21,20 +21,24 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" routerLink="register">Register</a>
+                <a class="nav-link active" aria-current="page" routerLink="register" *ngIf="!authService._isAuthenticated">Register</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" routerLink="login">Login</a>
+                <a class="nav-link active" aria-current="page" routerLink="login" *ngIf="!authService._isAuthenticated">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" routerLink="login"  style="color:red" cursor="pointer;" (click)="signOut()"   *ngIf="authService._isAuthenticated">Logout</a>
               </li>
               <li>
-                <a routerLink="admin" class="btn btn-outline-success" type="submit">Management Panel</a>
+                <a routerLink="admin" class="btn btn-outline-success" type="submit"*ngIf="authService._isAuthenticated">Management Panel</a>
               </li>
+             
             </ul>
-            <form class="d-flex" role="search">
+            <!-- <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            </form> -->
           </div>
         </div>
       </nav>   
