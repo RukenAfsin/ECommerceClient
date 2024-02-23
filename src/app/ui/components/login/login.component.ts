@@ -4,6 +4,7 @@ import { UserService } from '../../../services/common/models/user.service';
 import { AuthService } from '../../../services/common/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import {  Router } from '@angular/router';
+import { UserAuthService } from '../../../services/common/models/user-auth.service';
 
 
 @Component({
@@ -16,11 +17,12 @@ import {  Router } from '@angular/router';
 export class LoginComponent  {
 
   constructor(private userService:UserService,private authService:AuthService,
+    private userAuthService:UserAuthService,
     private activatedRoute:ActivatedRoute,
     private router: Router){}
 
   async login(UserNameOrEmail :string, Password:string){
-   await  this.userService.login(UserNameOrEmail, Password, ()=>{
+   await  this.userAuthService.login(UserNameOrEmail, Password, ()=>{
     this.authService.identityCheck();
 
     this.activatedRoute.queryParams.subscribe(params=>{

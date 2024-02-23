@@ -29,23 +29,5 @@ export class UserService {
     }
   }
 
- async login(UserNameOrEmail :string, Password:string,any):Promise<any>{
-    const observable:Observable<any | TokenResponse>=this.httpClientService.post<any|TokenResponse>({
-    controller:"users",
-    action:"login"
-  },{UserNameOrEmail,Password})
-
- const tokenResponse:TokenResponse =await firstValueFrom(observable) as TokenResponse;
- if(tokenResponse)
- localStorage.setItem("accessToken", tokenResponse.token.accessToken)
- {  
-  this.toastrService.message("User login successfull","login success",
-      {
-         messageType:ToastrMessageType.Success,
-         position:ToastrPosition.TopRight
-      }) 
-
-  } 
- }
 }
 
