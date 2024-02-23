@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
-import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './ui/components/register/register.component';
 import { AuthService } from './services/common/auth.service';
 import {  Router } from '@angular/router';
