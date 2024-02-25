@@ -4,9 +4,10 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 import { routes } from './app.routes';
 import { RouterModule, provideRouter } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './ui/components/register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,7 +24,9 @@ export const appConfig: ApplicationConfig = {
                             allowedDomains:["localhost:7176"],
                           }
                         })
+                       
     ),
+    {provide:HTTP_INTERCEPTORS,useClass:HttpErrorHandlerInterceptorService,multi:true},
     provideClientHydration(),
     provideAnimations(),
     provideAnimations()
