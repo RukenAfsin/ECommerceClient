@@ -30,6 +30,15 @@ constructor(private httpClientServive:HttpClientService,
 
   @Input() options:Partial<FileUploadOptions>;
 
+
+  onFileUploadClick() {
+    this.dialogService.openDialog({
+      componentType: FileUploadDialogComponent,
+      data: FileUploadDialogState.Yes,
+      afterClosed: () => {
+      }
+    });
+  }
   public selectedFiles(files: NgxFileDropEntry[]) {
     this.files = files;
     const fileData:FormData=new FormData();
@@ -89,22 +98,9 @@ constructor(private httpClientServive:HttpClientService,
     }
 
   });
+  
 
  }
-
-//  openDialog(afterClosed:any): void {
-//   const dialogRef = this.dialog.open(FileUploadDialogComponent, {
-//     width:'250px',
-//     data: FileUploadDialogState.Yes,
-//   });
-
-//   dialogRef.afterClosed().subscribe(result => {
-//    if(result==FileUploadDialogState.Yes)
-//    afterClosed()
-   
-//   });
-
-// }
 }
 
 export class FileUploadOptions{

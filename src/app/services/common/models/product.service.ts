@@ -36,6 +36,9 @@ export class ProductService {
       });
   }
 
+
+
+  
   async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalCount: number; products: List_Product[] }> {
     try {
       const data: { totalCount: number; products: List_Product[] } = await this.httpClientService.get<{ totalCount: number; products: List_Product[] }>({

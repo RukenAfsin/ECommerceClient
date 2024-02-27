@@ -1,29 +1,33 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Output, ViewChild } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { List_Product } from '../../../../contracts/list_product';
 import { ProductService } from '../../../../services/common/models/product.service';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';7
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { DeleteDirective } from '../../../../directives/admin/delete.directive';
+import { FileUploadComponent, FileUploadOptions } from '../../../../services/common/file-upload/file-upload.component';
+import { FileUploadDialogComponent } from '../../../../dialogs/file-upload-dialog/file-upload-dialog.component';
 
 declare var $:any;
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [MatTableModule,MatPaginatorModule,DeleteDirective],
+  imports: [MatTableModule,MatPaginatorModule,DeleteDirective,FileUploadComponent,FileUploadDialogComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
 export class ListComponent{
 constructor(private productService:ProductService,private alertifyService:AlertifyService){}
 
+onFileUploadClick(){}
+
 async ngAfterViewInit() {
   await this.getProducts(); 
   this.dataSource.paginator = this.paginator;
 }
 
-displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate','updatedDate','edit','delete'];
+displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate','updatedDate','photo','edit','delete'];
 dataSource :MatTableDataSource<List_Product>= null;
 @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -42,11 +46,6 @@ async getProducts(){
    this.paginator.length=allProducts.totalCount
 }
 
-// delete(id, event){
-//   alert(id)
-//   const img :HTMLImageElement=event.srcElement;
-//   $(img.parentElement.parentElement).fadeOut(2000);
-// }
 
 async pageChanged(){
   await this.getProducts();
