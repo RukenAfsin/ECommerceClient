@@ -26,8 +26,7 @@ export class RegisterComponent {
       password: ["", 
       [Validators.required]],
       passwordconfirm: ["", 
-     [Validators.required
-    ]]
+     [Validators.required]]
     },{
 
       validators:(group:AbstractControl): ValidationErrors|null=>{
@@ -61,7 +60,7 @@ export class RegisterComponent {
           position: ToastrPosition.TopRight
         })
       else
-        this.toastrService.message(result.message, "Regiter Error", {
+        this.toastrService.message(result.message, "Register Error", {
           messageType: ToastrMessageType.Error,
           position: ToastrPosition.TopRight
         })
