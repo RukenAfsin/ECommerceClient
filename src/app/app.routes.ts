@@ -31,6 +31,7 @@ export const routes: Routes = [
       { path: "home", component: HomeComponent },
       { path: "basket", component: BasketsComponent },
       { path: "products", component: ProductsComponent },
+      { path: "products/:pageNo", component: ProductsComponent },
       { path: "register", component: RegisterComponent},
       { path: "login", component: LoginComponent}
     ];

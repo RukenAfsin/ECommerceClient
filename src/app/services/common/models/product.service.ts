@@ -39,9 +39,11 @@ export class ProductService {
 
 
   
-  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalCount: number; products: List_Product[] }> {
+  async read(page: number = 0, size: number = 5, successCallBack?: () => 
+  void, errorCallBack?: (errorMessage: string) => 
+  void): Promise<{ totalProductCount: number; products: List_Product[] }> {
     try {
-      const data: { totalCount: number; products: List_Product[] } = await this.httpClientService.get<{ totalCount: number; products: List_Product[] }>({
+      const data: { totalProductCount: number; products: List_Product[] } = await this.httpClientService.get<{ totalProductCount: number; products: List_Product[] }>({
         controller: "products",
         queryString: `page=${page}&size=${size}`
       }).toPromise();
@@ -50,7 +52,7 @@ export class ProductService {
         successCallBack();
       }
   
-      return data;
+      return await data;
     } catch (errorResponse) {
       if (errorCallBack) {
         const errorMessage = (errorResponse instanceof HttpErrorResponse) ? errorResponse.message : 'Unknown Error';
@@ -61,6 +63,11 @@ export class ProductService {
     }
   }
   
+
+
+
+
+
   async delete(id:string){
    const deleteObservable:Observable<any>= this.httpClientService.delete<any>({
       controller:"products"
