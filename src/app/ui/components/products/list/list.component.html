@@ -19,12 +19,12 @@
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item">
-            <a class="page-link"  [routerLink]="['/products',currentPageNo -1<=0 ? 1: currentPageNo -1]">
+            <a class="page-link">
               {{currentPageNo}}/{{totalPageCount}}
             </a>
           </li>
           <li class="page-item">
-            <a class="page-link"  [routerLink]="['/products',currentPageNo -1<=0 ? 1: currentPageNo -1]">
+            <a class="page-link" [routerLink]="['/products', currentPageNo - 1 <= 0 ? 1 : currentPageNo - 1]">
               Previous
             </a>
           </li>
@@ -33,8 +33,8 @@
               {{pageNo}}
             </a>
           </li>
-          <li class="page-item"><a class="page-link" [routerLink]="['/products',currentPageNo +1>=totalPageCount ? totalPageCount :
-             currentPageNo +1]">Next</a></li>
+          <li class="page-item">
+            <a class="page-link" [routerLink]="['/products', currentPageNo + 1 >= totalPageCount ? totalPageCount : currentPageNo + 1]">Next</a></li>
         </ul>
       </nav>
     </div>
