@@ -18,6 +18,10 @@ declare var $:any;
   styleUrl: './list.component.scss'
 })
 export class ListComponent{
+  imagePath: string;
+  url = 'https://localhost:7176/Uploads/Images/';
+
+
 constructor(private productService:ProductService,private alertifyService:AlertifyService){}
 
 onFileUploadClick(){}
