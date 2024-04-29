@@ -5,21 +5,26 @@ import { CustomToastrService, ToastrMessageType, ToastrPosition } from './servic
 import { RegisterComponent } from './ui/components/register/register.component';
 import { AuthService } from './services/common/auth.service';
 import {  Router } from '@angular/router';
+import { HttpClientService } from './services/common/http-client.service';
+import { BasketsComponent } from './ui/components/baskets/baskets.component';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule,RegisterComponent],
+  imports: [CommonModule, RouterModule,RegisterComponent,BasketsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
 
-  constructor(public authService:AuthService,private toastrService:CustomToastrService,
-    private router:Router )
+  constructor(public authService:AuthService,private toastrService:CustomToastrService
+    ,private router:Router,httpClientService:HttpClientService )
   {
+
+ 
+
     authService.identityCheck()
   }
   

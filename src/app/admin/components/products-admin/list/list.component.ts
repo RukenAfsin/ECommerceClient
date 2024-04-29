@@ -18,11 +18,12 @@ declare var $:any;
   styleUrl: './list.component.scss'
 })
 export class ListComponent{
-  imagePath: string;
+  imagePath: string = '';
   url = 'https://localhost:7176/Uploads/Images/';
 
 
 constructor(private productService:ProductService,private alertifyService:AlertifyService){}
+
 
 onFileUploadClick(){}
 
@@ -37,6 +38,7 @@ dataSource :MatTableDataSource<List_Product>= null;
 
 
 async getProducts(){
+  console.log("getProducts is called.");
   const allProducts:{totalProductCount:number;
     products:List_Product[]} =await this.productService.read(this.paginator?
     this.paginator.pageIndex:0,this.paginator?
@@ -46,6 +48,27 @@ async getProducts(){
     messageType:MessageType.Error,
     position:Position.TopRight
   }))
+  // allProducts.products.forEach(product => {
+  //   product.imagePath = `${this.url}${product.id}.jpg`; 
+  // });
+
+  console.log(allProducts); // allProducts nesnesini konsola yazdır
+
+  if (!allProducts || !allProducts.products || allProducts.products.length === 0) {
+    console.log("No products fetched or empty products array.");
+    return;
+  }
+
+  allProducts.products.forEach(product => {
+    if (product.id === '6db1b8b4-e797-4a7e-8f4a-08dc247b945b') {
+      product.imagePath = 'wwwroot/Uploads/Images/01879b09-603d-412f-a5bf-7c5706614857.jpeg';
+    } else {
+      product.imagePath = `${this.url}${product.id}.jpg`; 
+    }
+  });
+
+
+
    this.dataSource=new MatTableDataSource<List_Product>(allProducts.products)
    this.paginator.length=allProducts.totalProductCount
 }

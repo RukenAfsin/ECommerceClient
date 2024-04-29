@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { ProductService } from '../../../../services/common/models/product.service';
 import { List_Product } from '../../../../contracts/list_product';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { BasketService } from '../../../../services/common/models/basket.service';
+import { Create_Basket_Item } from '../../../../contracts/basket/create_basket_item';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../../../services/ui/custom-toastr.service';
 
 @Component({
   selector: 'app-list',
@@ -13,7 +16,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 })
 export class ListComponent {
 
-  constructor(private productService:ProductService,private activatedRoute:ActivatedRoute){}
+  constructor(private productService:ProductService,private activatedRoute:ActivatedRoute,private basketService:BasketService,
+    private customToastService:CustomToastrService){}
 
 
   currentPageNo: number;
@@ -54,7 +58,20 @@ export class ListComponent {
       for (let i = this.currentPageNo - 3; i <= this.currentPageNo + 3; i++)
         this.pageList.push(i);
   });
-
 }
+
+
+
+async addToBasket(product:List_Product){
+  let _basketItem:Create_Basket_Item= new Create_Basket_Item()
+  _basketItem.productId=product.id
+  _basketItem.quantity=1
+  await this.basketService.add(_basketItem)
+  this.customToastService.message("Product Added To Basket",  "Product Added",{
+    messageType:ToastrMessageType.Success,
+    position:ToastrPosition.TopRight
+  })
+}
+
 
 }
