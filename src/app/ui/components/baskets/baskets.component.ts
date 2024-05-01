@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { BasketService } from '../../../services/common/models/basket.service';
 import { List_Basket_Item } from '../../../contracts/basket/list_basket_item';
 import { Update_Basket_Item } from '../../../contracts/basket/update_basket_item';
 declare var $:any
-
+const x: typeof BasketService = BasketService;
 @Component({
   selector: 'app-baskets',
   standalone: true,
