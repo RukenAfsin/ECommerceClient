@@ -6,7 +6,7 @@ import { ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular
 export class DynamicLoadComponentService {
 
   
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor() { }
 
   async loadComponent(component: ComponentType, viewContainerRef:ViewContainerRef) {
 
@@ -18,7 +18,7 @@ export class DynamicLoadComponentService {
     }
 
     viewContainerRef.clear()
-    return viewContainerRef.createComponent(this.componentFactoryResolver.resolveComponentFactory (_component))
+    return viewContainerRef.createComponent(_component)
   }
 }
 

@@ -17,6 +17,7 @@ import { HubUrls } from '../../../constants/hub-urls';
 export class DashboardComponent {
   constructor(private alertify:AlertifyService,private signalRService:SignalRService) {
     signalRService.start(HubUrls.ProductHub)
+    signalRService.start(HubUrls.OrderHub)
   } 
 
 ngOnInit():void{
@@ -24,6 +25,12 @@ ngOnInit():void{
     this.alertify.message(message,{
       messageType:MessageType.Notify,
       position:Position.TopRight
+    })
+  })
+  this.signalRService.on(ReceiveFunctions.OrderAddedMessageReceiveFunction,message=>{
+    this.alertify.message(message,{
+      messageType:MessageType.Notify,
+      position:Position.TopCenter
     })
   })
 

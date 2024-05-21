@@ -63,6 +63,7 @@ export class ListComponent {
 
 
 async addToBasket(product:List_Product){
+  debugger;
   let _basketItem:Create_Basket_Item= new Create_Basket_Item()
   _basketItem.productId=product.id
   _basketItem.quantity=1
