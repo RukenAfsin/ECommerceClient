@@ -11,8 +11,8 @@ import { HttpErrorHandlerInterceptorService } from './services/common/http-error
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    { provide: 'baseUrl', useValue: 'https://localhost:7176/api', multi: true },
-    { provide: 'baseSignalRUrl', useValue: 'https://localhost:7176/', multi: true },
+    { provide: 'baseUrl', useValue: 'http://localhost:5199/api', multi: true },
+    { provide: 'baseSignalRUrl', useValue: 'http://localhost:5199/', multi: true },
     provideRouter(routes),
     importProvidersFrom(BrowserModule, 
                         BrowserAnimationsModule,
