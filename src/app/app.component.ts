@@ -21,33 +21,24 @@ import {ComponentType} from '../app/services/common/dynamic-load-component.servi
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-    @ViewChild(DynamicLoadComponentDirective,{ static:true})
-    dynamicLoadComponentDirective:DynamicLoadComponentDirective
+  @ViewChild(DynamicLoadComponentDirective, { static: true })
+  dynamicLoadComponentDirective: DynamicLoadComponentDirective;
 
-
-  constructor(public authService:AuthService,private toastrService:CustomToastrService
-    ,private router:Router,httpClientService:HttpClientService,private dynamicLoadComponentService:DynamicLoadComponentService )
-  {
-
- 
-
-    authService.identityCheck()
-  }
-  
-  signOut(){
-    localStorage.removeItem("accessToken")
-    this.authService.identityCheck()
-    this.router.navigate([""])
-    this.toastrService.message("The session is closed", "Session Closed",{
-      messageType:ToastrMessageType.Warning,
-      position:ToastrPosition.TopRight
-    })
+  constructor(public authService: AuthService, private toastrService: CustomToastrService, private router: Router, private dynamicLoadComponentService: DynamicLoadComponentService) {
+    authService.identityCheck();
   }
 
+  signOut() {
+    localStorage.removeItem("accessToken");
+    this.authService.identityCheck();
+    this.router.navigate([""]);
+    this.toastrService.message("Oturum kapatılmıştır!", "Oturum Kapatıldı", {
+      messageType: ToastrMessageType.Warning,
+      position: ToastrPosition.TopRight
+    });
+  }
 
-  
   loadComponent() {
-    this.dynamicLoadComponentService.loadComponent(ComponentType.BasketsComponent,this.dynamicLoadComponentDirective.viewContainerRef)
+    this.dynamicLoadComponentService.loadComponent(ComponentType.BasketsComponent, this.dynamicLoadComponentDirective.viewContainerRef);
   }
-
 }

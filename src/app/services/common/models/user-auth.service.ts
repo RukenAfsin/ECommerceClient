@@ -45,13 +45,13 @@ export class UserAuthService {
     }
     callBackFunction(tokenResponse?true :false);
   }
-  catch {
+  catch(error) { 
     callBackFunction(false);
   }
 
 
 
-  const tokenResponse :TokenResponse = await firstValueFrom(observable)as TokenResponse;
+  // const tokenResponse :TokenResponse = await firstValueFrom(observable)as TokenResponse;
 
 
   // if(tokenResponse){
